@@ -1,0 +1,128 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+body {
+  background-color: rgb(220, 218, 225);
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 20px);
+  padding: 10px;
+  overflow: hidden;
+}
+
+.left-panel, .right-panel {
+  background-color: rgb(240, 241, 244);
+  border-radius: 18px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.left-panel {
+  flex: 2.5; 
+  margin-right: 10px;
+}
+
+.right-panel {
+  flex: 0.2; 
+}
+
+
+/*navbar in the left panel*/
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.nav-left, .nav-center, .nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.today{
+  border: none;
+}
+
+.nav-button {
+  background-color: rgb(240, 241, 244);
+  border: none;
+  border-radius: 5px;
+  margin-right: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #ccc;
+}
+
+.nav-view {
+  background-color:  rgb(240, 241, 244);
+  border: none;
+  border-radius: 5px;
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-view:hover {
+  background-color: #ca2d2d;
+  color: white
+}
+
+.search-icon {
+  left: 20 px;
+  color: #3d3c3c;
+}
+
+.search-box {
+  padding: 5px;
+  background-color: rgb(240, 241, 244);
+  border-radius: 5px;
+  border: 1px 
+}
