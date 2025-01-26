@@ -1,103 +1,62 @@
-import "@fontsource/anek-telugu";
-import { useCallback, useMemo, useState } from "react";
-import dayjs, { Dayjs } from "dayjs";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import event from "./events";
+import React, { useState } from "react";
+import dayjs from "dayjs";
+import { MainWrapper, HGrid, DayVWrapper, VGrid } from "./schdstyle"; // Import your Stitches styles
 
-import * as Styles from "./schdstyle";
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const HOURS = Array.from({ length: 12 }, (_, i) => i + 7);
+const HOUR_BOX_HEIGHT = 30;
 
-const events = {
-    "2025-02-01": "Event 1",
-    "2025-02-15": "Event 2",
-    // Add more events here
-  };
+const getMonday = () => {
+  const today = new Date();
+  const first = today.getDate() - today.getDay() + 1;
+  return new Date(today.setDate(first));
+};
 
+const getDate = (start: Date, index: number): Date =>
+  new Date(start.setDate(start.getDate() + index));
 
+const areDatesOnSameDay = (first: Date, second: Date): boolean =>
+  first.getFullYear() === second.getFullYear() &&
+  first.getMonth() === second.getMonth() &&
+  first.getDate() === second.getDate();
 
-  function Scheduler() {
-    const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
-  
-    const currentDay = useMemo(() => dayjs().toDate(), []);
-  
-    const firstDayOfTheWeek = useMemo(
-      () => selectedDate.clone().startOf("week"),
-      [selectedDate]
-    );
-  
-    const generateWeekDays = useCallback((): Dayjs[] => {
-      const days: Dayjs[] = [];
-      for (let i = 0; i < 7; i++) {
-        days.push(firstDayOfTheWeek.clone().add(i, "day"));
-      }
-      return days;
-    }, [firstDayOfTheWeek]);
-  
-    const generateTimeSlots = useCallback((): string[] => {
-      const times: string[] = [];
-      for (let i = 7; i <= 17; i++) {
-        times.push(`${i}:00`);
-      }
-      return times;
-    }, []);
-  
-    const weekDays = generateWeekDays();
-    const timeSlots = generateTimeSlots();
-  
-    return (
-      <Styles.MainWrapper>
-        <Styles.CalendarHeaderWrapper>
-          <h3 style={{ color: 'black' }}>{selectedDate.clone().format("MMMM")} <span style={{ color: 'red' }}>{selectedDate.clone().format("YYYY")}</span></h3>
-          <div>
-            <MdKeyboardArrowLeft
-              size={25}
-              onClick={() => setSelectedDate((date) => date.subtract(1, "week"))}
-            />
-            <MdKeyboardArrowRight
-              size={25}
-              onClick={() => setSelectedDate((date) => date.add(1, "week"))}
-            />
-          </div>
-        </Styles.CalendarHeaderWrapper>
-        <Styles.WeekDaysWrapper>
-          {weekDays.map((day, index) => (
-            <Styles.WeekDayCell key={`week-day-${index}`}>
-              {day.format("ddd DD")}
-            </Styles.WeekDayCell>
+const Scheduler: React.FC = () => {
+  const [mondayDate, setMondayDate] = useState(getMonday());
+
+  const nextWeek = () => setMondayDate(getDate(new Date(mondayDate), 7));
+  const prevWeek = () => setMondayDate(getDate(new Date(mondayDate), -7));
+
+  return (
+    <MainWrapper>
+      <div>
+        <button onClick={prevWeek}>Prev Week</button>
+        <button onClick={nextWeek}>Next Week</button>
+      </div>
+      
+      {/* GRID STRUCTURE */}
+      <HGrid>
+        {/* Hour Column */}
+        <VGrid>
+          {HOURS.map((hour) => (
+            <div key={hour} style={{ borderBottom: "1px solid black" }}>
+              {String(hour).padStart(2, "0")}:00
+            </div>
           ))}
-        </Styles.WeekDaysWrapper>
-        {timeSlots.map((time, timeIndex) => (
-          <Styles.CalendarContentWrapper key={`time-slot-${timeIndex}`}>
-            <Styles.TimeSlot>{time}</Styles.TimeSlot>
-            {weekDays.map((day, dayIndex) => {
-              const dateString = day.format("YYYY-MM-DD");
-              const isCurrentDate = dayjs(currentDay).isSame(day, "date");
-              return (
-                <Styles.CalendarDayCell
-                  key={`day-${dayIndex}`}
-                  variant={
-                    selectedDate.clone().toDate().getMonth() !== day.month()
-                      ? "nextMonth"
-                      : isCurrentDate
-                      ? "today"
-                      : "default"
-                  }
-                  style={
-                    isCurrentDate
-                      ? { borderRadius: '50%', backgroundColor: 'rgb(85, 40, 157)', color: "white" }
-                      : events[dateString]
-                      ? { borderRadius: '50%', backgroundColor: 'rgb(219, 221, 229)' }
-                      : {}
-                  }
-                >
-                  {events[dateString] ? day.date() : '•'}  
-                </Styles.CalendarDayCell>
-              );  
-            })}
-            <Styles.TimeSlot>{time}</Styles.TimeSlot> {/* Add time slot on the right edge */}
-          </Styles.CalendarContentWrapper>
+        </VGrid>
+
+        {/* Days Columns */}
+        {DAYS.map((day, i) => (
+          <DayVWrapper
+            key={i}
+          >
+            <p>{day} {getDate(new Date(mondayDate), i).getDate()}</p>
+
+        
+          </DayVWrapper>
         ))}
-      </Styles.MainWrapper>
-    );
-  }
-  
-  export default Scheduler
+      </HGrid>
+    </MainWrapper>
+  );
+};
+
+export default Scheduler;
