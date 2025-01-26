@@ -1,43 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
 body {
   background-color: rgb(220, 218, 225);
   margin: 0;
@@ -62,6 +22,7 @@ body {
 .left-panel {
   flex: 2.5; 
   margin-right: 10px;
+  position: relative;
 }
 
 .right-panel {
@@ -71,11 +32,18 @@ body {
 
 /*navbar in the left panel*/
 .navbar {
+  position: absolute;
+  right: 0;
+  width: 60%; 
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  align-items: center ;
+  margin-right: 20px;
+  margin-top: 10px;
+  z-index: 1;
 }
+
+
 
 .nav-left, .nav-center, .nav-right {
   display: flex;
@@ -124,5 +92,18 @@ body {
   padding: 5px;
   background-color: rgb(240, 241, 244);
   border-radius: 5px;
-  border: 1px 
+  border: 1px;
+  width: 60%;
 }
+
+.scheduler-navbar {
+  margin-top: 10px; 
+  width: 30%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: rgb(240, 241, 244);
+  margin-bottom: 10px;
+  margin-left: 15px;
+}
+

@@ -1,44 +1,60 @@
 import { styled } from "@stitches/react";
 
-const HOUR_MARGIN_TOP = 20;
-const HOUR_BOX_HEIGHT = 30;
+const HOUR_MARGIN_TOP = 53;
+const HOUR_BOX_HEIGHT = 55;
 
 export const MainWrapper = styled("div", {
   display: 'flex',
-  width: '100%',
-  height: '100%',
-  padding: 10,
+  flexDirection: 'column',
+  width: '98%',
+  height: '0%',
   backgroundColor: 'rgb(240, 241, 244)',
   fontFamily: "Anek Telugu",
 });
 
 export const HGrid = styled("div", {
-  width: '100%',
   display: 'grid',
-  gridTemplateColumns: '50px repeat(7, 1fr)',
+  gridTemplateColumns: '50px repeat(7, 1fr) 50px',
   height: '100%',
 });
 
 export const DayVWrapper = styled("div", {
   height: '100%',
-  border: '1px solid green',
+  backgroundImage: 'linear-gradient(to right, rgb(230, 231, 235) 1.5px, transparent 1px)',
   position: 'relative',
-  backgroundColor: '#EED2CC',
-  '&:hover': {
-    backgroundColor: 'rgba(0, 0, 0, 0.1)', // Hover effect
+  display: 'grid',
+  paddingTop: "2px", 
+  
+  gridTemplateRows: `1fr repeat(11, ${HOUR_BOX_HEIGHT}px)`,
+  '&::after': {
+    paddingTop: "2px", 
+    content: '""',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+    backgroundSize: `${HOUR_BOX_HEIGHT}px ${HOUR_BOX_HEIGHT}px`,
+    backgroundImage: 'linear-gradient(to bottom, rgb(216, 219, 225) 1.5px, transparent 1px)',
+  
   },
 });
 
 export const VGrid = styled("div", {
   display: 'grid',
-  gridTemplateRows: 'repeat(12, 1fr)',
-  marginTop: HOUR_MARGIN_TOP,
+  gridTemplateRows: `repeat(12, ${HOUR_BOX_HEIGHT}px)`,
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative',
+  
 });
 
 export const Hour = styled("div", {
   height: HOUR_BOX_HEIGHT,
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'start',
+  justifyContent: 'center',
+  fontSize: "14px",
 });
 
 export const Wrapper = styled("div", {
@@ -48,15 +64,6 @@ export const Wrapper = styled("div", {
   position: 'relative',
 });
 
-export const HourLine = styled("div", {
-  position: 'absolute',
-  borderBottom: '1px solid red',
-  width: '100%',
-  variants: {
-   
-    },
-  },
-);
 
 export const Event = styled("div", {
   background: '#5A6650',

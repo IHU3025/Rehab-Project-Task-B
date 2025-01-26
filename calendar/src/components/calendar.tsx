@@ -2,15 +2,10 @@ import "@fontsource/anek-telugu";
 import { useCallback, useMemo, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-/*import event from "./events";*/
 
 import * as Styles from "./calendarstyle";
 
-const events: Record<string, string> = {
-  "2025-02-01": "Event 1",
-  "2025-02-15": "Event 2",
-  "2025-01-25": "Event 2",
-};
+import {events, eventForDate} from "./events";
 
 /*code from https://dev.to/franciscomendes10866/how-to-build-a-custom-calendar-component-in-react-26kj*/
 
@@ -84,6 +79,7 @@ const  Calendar = () => {
       {week.map((day, dayIndex) => {
         const dateString = dayjs(day).format("YYYY-MM-DD");
         const isCurrentDate = dayjs(currentDay).isSame(day, "date");
+        const event = eventForDate(day);
         return (
           <Styles.CalendarDayCell
             key={`day-${dayIndex}`}
@@ -97,12 +93,12 @@ const  Calendar = () => {
             style={
               isCurrentDate
                 ? { borderRadius: '50%', backgroundColor: 'rgb(85, 40, 157)', color: "white" }
-                :events[dateString] 
+                :event
                 ? { borderRadius: '50%', backgroundColor: 'rgb(219, 221, 229)'} 
                 : {}
             }
           >
-            {events[dateString] ? day.getDate() : '•'}  
+            {event ? day.getDate() : '•'}  
           </Styles.CalendarDayCell>
         );   {/*if there are event keys correspond to the data then it display the number*/ }
       })}
