@@ -50,6 +50,8 @@ const  Calendar = () => {
     return firstDayOfEachWeek.map((date) => generateWeek(date));
   }, [generateFirstDayOfEachWeek, firstDayOfFirstWeekOfMonth, generateWeek]);
 
+  const currentWeekDay = dayjs().day();
+
   return (
     <Styles.MainWrapper>
     <Styles.CalendarHeaderWrapper>
@@ -68,7 +70,9 @@ const  Calendar = () => {
     </Styles.CalendarHeaderWrapper>
     <Styles.WeekDaysWrapper>
     {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, index) => (
-        <Styles.WeekDayCell key={`week-day-${index}`}>
+        <Styles.WeekDayCell key={`week-day-${index}`} style={{
+          color: index === currentWeekDay ? 'rgb(85, 40, 157)' : "gray",
+          fontWeight: index === currentWeekDay ? "bold" : "normal",}}>
           {day.toUpperCase()} 
         </Styles.WeekDayCell>
      ))}

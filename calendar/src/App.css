@@ -20,13 +20,16 @@ body {
 }
 
 .left-panel {
-  flex: 2.5; 
+  flex: 2.1; 
   margin-right: 10px;
   position: relative;
 }
 
 .right-panel {
-  flex: 0.2; 
+  flex: 0.55; 
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 

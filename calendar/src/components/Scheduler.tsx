@@ -24,9 +24,6 @@ const Scheduler: React.FC<SchedulerProps> = ({ events }) => {
     const [sundayDate, setSundayDate] = useState(getSunday());
     const today = new Date();
 
-    const nextWeek = () => setSundayDate(getDate(new Date(sundayDate), 7));
-    const prevWeek = () => setSundayDate(getDate(new Date(sundayDate), -7));
-
     const formatHour = (hour: number) => {
         if (hour < 12) {
         return `${hour} AM`;
@@ -37,18 +34,22 @@ const Scheduler: React.FC<SchedulerProps> = ({ events }) => {
         }
     };
 
+
+    const nextWeek = () => setSundayDate(getDate(new Date(sundayDate), 7));
+    const prevWeek = () => setSundayDate(getDate(new Date(sundayDate), -7));
+
   return (
     
     <MainWrapper>
       <nav className="scheduler-navbar">
         <button className="nav-button" onClick={prevWeek}>
-          &lt;
+         <b>&lt;</b> 
         </button>
         <button className="today" onClick={() => setSundayDate(getSunday())}>
           Today
         </button>
         <button className="nav-button" onClick={nextWeek}>
-          &gt;
+          <b>&gt;</b> 
         </button>
       </nav>
       

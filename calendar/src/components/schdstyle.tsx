@@ -10,6 +10,7 @@ export const MainWrapper = styled("div", {
   height: '0%',
   backgroundColor: 'rgb(240, 241, 244)',
   fontFamily: "Anek Telugu",
+  zIndex: 0,
 });
 
 export const HGrid = styled("div", {
@@ -24,6 +25,7 @@ export const DayVWrapper = styled("div", {
   position: 'relative',
   display: 'grid',
   paddingTop: "2px", 
+  zIndex: 1,
   
   gridTemplateRows: `1fr repeat(11, ${HOUR_BOX_HEIGHT}px)`,
   '&::after': {
@@ -36,7 +38,7 @@ export const DayVWrapper = styled("div", {
     left: 0,
     backgroundSize: `${HOUR_BOX_HEIGHT}px ${HOUR_BOX_HEIGHT}px`,
     backgroundImage: 'linear-gradient(to bottom, rgb(216, 219, 225) 1.5px, transparent 1px)',
-  
+    zIndex: 1,
   },
 });
 
@@ -46,6 +48,7 @@ export const VGrid = styled("div", {
   alignItems: 'center',
   justifyContent: 'center',
   position: 'relative',
+  
   
 });
 
@@ -74,8 +77,7 @@ export const Event = styled("div", {
   margin: 5,
   width: 'calc(100% - 10px)',
   borderRadius: 5,
-  variants: {
-  },
+  zIndex: 10,
 });
 
 export const FlexBox = styled("div", {
