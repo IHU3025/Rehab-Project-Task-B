@@ -37,6 +37,7 @@ const styles: { [key: string]: CSSProperties } = {
         position: 'relative' as 'relative', 
         width: '20px', 
         height: '20px',
+        minWidth: '20px', 
         backgroundColor: 'white',
         borderRadius: '50%',
         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
@@ -97,6 +98,7 @@ const styles: { [key: string]: CSSProperties } = {
     avatarStack: {
         display: 'flex',
         position: 'relative',
+        paddingTop: '25px',
     },
 
     avatar: {
@@ -107,11 +109,11 @@ const styles: { [key: string]: CSSProperties } = {
         position: 'absolute',
     },
 
-    extraParticipants: {
+    /*extraParticipants: {
         width: '32px',
         height: '32px',
         borderRadius: '50%',
-        backgroundColor: '#ccc',
+        backgroundColor: 'rgba(197, 194, 201, 0.81)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -119,8 +121,9 @@ const styles: { [key: string]: CSSProperties } = {
         fontWeight: 'bold',
         color: 'white',
         position: 'absolute',
-        left: '80px',
-    },
+        border: '2px solid white',
+        left: '8px',
+    },*/
 
     meetingButton: {
         marginLeft: 'auto',

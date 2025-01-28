@@ -1,7 +1,9 @@
 import { styled } from "@stitches/react";
 
+/*code from https://dev.to/franciscomendes10866/how-to-build-a-custom-calendar-component-in-react-26kj*/
+
 export const MainWrapper = styled("div", {
-  width: 240,
+  width: 260,
   padding: 10,
   backgroundColor: 'rgb(240, 241, 244)',
   fontFamily: "Anek Telugu",
@@ -20,7 +22,7 @@ export const WeekDaysWrapper = styled("div", {
 });
 
 export const WeekDayCell = styled("div", {
-  height: 30,
+  height: 25,
   width: 30,
   margin: 2,
   display: "flex",
@@ -36,11 +38,10 @@ export const CalendarContentWrapper = styled("div", {
 
 export const CalendarDayCell = styled("div", {
   height: 30,
-  width: 30,
+  width: 50,
   display: 'flex',
   alignItems: "center",
   justifyContent: "center",
-  borderRadius: 6,
   margin: 2,
 
   variants: {

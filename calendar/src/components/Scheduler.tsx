@@ -1,24 +1,26 @@
 import React, { useState } from "react";
-import { MainWrapper, HGrid, DayVWrapper, VGrid, Hour } from "./schdstyle"; // Import your Stitches styles
-import { getSunday, getDate, areDatesOnSameDay } from "./datefunc"; 
+import { MainWrapper, HGrid, DayVWrapper, VGrid, Hour } from "./SchedulerStyle"; 
+import { getSunday, getDate, areDatesOnSameDay } from "./dateFunc";
 import "../App.css";
 import { events, CalendarEvent } from "./events";
-import EventRenderer from "./eventrender";
+import EventRenderer from "./eventRender";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+
 
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const HOURS = Array.from({ length: 11 }, (_, i) => i + 7);
+const HOURS = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+
 
 
 {/*code reference https://codesandbox.io/p/sandbox/weekly-calendar-d4bn7e?file=%2Fsrc%2FApp.js%3A54%2C6*/}
 
-interface SchedulerProps {
+interface SchedulerInput {
     events: CalendarEvent[];
   }
 
 
-
-const Scheduler: React.FC<SchedulerProps> = ({ events }) => {
+const Scheduler: React.FC<SchedulerInput> = ({ events }) => {
 
 
     const [sundayDate, setSundayDate] = useState(getSunday());
@@ -34,7 +36,7 @@ const Scheduler: React.FC<SchedulerProps> = ({ events }) => {
         }
     };
 
-
+    //change sundayDate state by 1 week 
     const nextWeek = () => setSundayDate(getDate(new Date(sundayDate), 7));
     const prevWeek = () => setSundayDate(getDate(new Date(sundayDate), -7));
 
@@ -42,34 +44,33 @@ const Scheduler: React.FC<SchedulerProps> = ({ events }) => {
     
     <MainWrapper>
       <nav className="scheduler-navbar">
-        <button className="nav-button" onClick={prevWeek}>
-         <b>&lt;</b> 
-        </button>
+        <MdKeyboardArrowLeft className="nav-button" size={20} onClick={prevWeek} style = {{padding: "3px"}}/>
         <button className="today" onClick={() => setSundayDate(getSunday())}>
           Today
         </button>
-        <button className="nav-button" onClick={nextWeek}>
-          <b>&gt;</b> 
-        </button>
+        <MdKeyboardArrowRight className="nav-button" size={20} onClick={nextWeek}/>
       </nav>
       
-      {/* GRID*/}
+      {/* GRID  -- 7 col with 2VGrid for hour at both side*/}
       <HGrid>
-        {/* Hour */}
-        <VGrid>
-          <Hour key="empty"></Hour>
-          {HOURS.map((hour) => (
-            <Hour key={hour}>{formatHour(hour)}</Hour>
-          ))}
-        </VGrid>
+            {/* Hour -- 12 child elements of VGrid*/}
+            <VGrid>
+            <Hour key="empty"></Hour>
+            {HOURS.map((hour) => (
+                <Hour key={hour}>{formatHour(hour)}</Hour>
+            ))}
+            </VGrid>
 
         {/* Days */}
         {DAYS.map((day, i) => {
           const date = getDate(new Date(sundayDate), i);
+          //for column color-coding
           const isToday = areDatesOnSameDay(date, today);
           const isWeekend = i === 0 || i === 6;
-          const dayEvents = events.filter(event => areDatesOnSameDay(event.start, date));
+          //array of today's events
+          const dayEvents = events.filter((event) => areDatesOnSameDay(event.start, date));
 
+          // format the 7 middle columns 
           return (
             <DayVWrapper
               key={i}
@@ -79,7 +80,7 @@ const Scheduler: React.FC<SchedulerProps> = ({ events }) => {
                                 'rgb(245, 246, 248)',
               }}
             >
-               <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", height: "100%" , paddingLeft: "20px"}}>
+               <div style={{ display: "flex", flexDirection: "column", alignItems: "start", justifyContent: "center", height: "100%" , paddingLeft: "20px"}}>
                 <p style={{ fontSize: "12px", margin: "0" , lineHeight: "1.5"}}>
                   {day.toUpperCase()}
                 </p>

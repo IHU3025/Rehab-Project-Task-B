@@ -1,8 +1,4 @@
-import { IntegerType, ListCollectionsCursor } from "mongodb";
-import internal from "stream";
 import dayjs, { Dayjs } from "dayjs";
-
-
 
 export type Participant = {
     id: number;
@@ -20,8 +16,7 @@ export type CalendarEvent = {
    context: string;
    participants: Participant[];
    meetingLink: string;
-
-}
+};
 
 export const eventForDate = (date: Date): CalendarEvent | undefined => {
     return events.find((event) =>
@@ -30,6 +25,8 @@ export const eventForDate = (date: Date): CalendarEvent | undefined => {
   };
 
 
+
+//sample data for participant and calendarevent
 const participant_example: Participant [] = [
     { id: 1, avatar: "https://randomuser.me/api/portraits/women/6.jpg" },
     { id: 2, avatar: "https://randomuser.me/api/portraits/men/7.jpg" },

@@ -1,29 +1,30 @@
 import './App.css';
-import React, { FC, useState } from 'react';
+import { FC, useState, ChangeEvent } from 'react';
 import Calendar from './components/calendar';
 import Scheduler from './components/Scheduler';
-import TodayEvents from './components/todayschedule';
+import TodayEvents from './components/TodaySchedule';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { events } from './components/events';
 
-function App() {
+const App: FC = () => {
+  //manually setting view since cant install react touter library due to dependency issue
   const [view, setView] = useState('Week');
-  const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
+  //search box update value
+  const [searchQuery, setSearchQuery] = useState('');
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value); 
   };
 
-  // Filter events based on the search result
-  const filteredEvents = events.filter(event =>
-    event.title.toLowerCase().includes(searchQuery.toLowerCase())
+
+  // filter events based on the search result
+  const filteredEvents = events.filter(
+    event => event.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
 
-
   return (
-    <>
       <div className="container">
         <div className="left-panel">
           <nav className="navbar">
@@ -31,8 +32,8 @@ function App() {
               <button className="nav-button" onClick={prevWeek}><strong>&lt;</strong></button>
               <button className="today" onClick={goToToday}>Today</button>
               <button className="nav-button" onClick={nextWeek}><strong>&gt;</strong></button>
-            </div>,  having trouble with router dom and useImperativeHandle dependecy, 
-            so decided to seperate the main-navbar with the scheduler one*/}
+            </div>,  having trouble with router dom and useImperativeHandle dependency, 
+            so decided to seperate the scheduler nav-bar from the main nav-bar*/}
             <div className="nav-center">
               <button className="nav-view" onClick={() => setView('Day')}>Day</button>
               <button className="nav-view" onClick={() => setView('Week')}>Week</button>
@@ -54,11 +55,10 @@ function App() {
           {view === 'Year' && <p>Year View Placeholder</p>}
         </div>
         <div className="right-panel">
-          <Calendar/>
+          <div className='calendar'><Calendar/></div>
           <TodayEvents events={filteredEvents} />
         </div>
       </div>
-    </>
   );
 };
 

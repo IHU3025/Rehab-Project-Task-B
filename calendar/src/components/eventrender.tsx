@@ -4,7 +4,7 @@ import { styled } from "@stitches/react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faCalendarDays, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-const HOUR_BOX_HEIGHT = 55; // Height for hour
+const HOUR_BOX_HEIGHT = 55; 
 const EVENT_PADDING = 4; 
 
 

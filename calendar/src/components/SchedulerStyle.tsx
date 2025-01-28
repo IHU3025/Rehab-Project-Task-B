@@ -1,6 +1,5 @@
 import { styled } from "@stitches/react";
 
-const HOUR_MARGIN_TOP = 53;
 const HOUR_BOX_HEIGHT = 55;
 
 export const MainWrapper = styled("div", {
@@ -60,36 +59,3 @@ export const Hour = styled("div", {
   fontSize: "14px",
 });
 
-export const Wrapper = styled("div", {
-  width: 'calc(100% - 30px)',
-  border: '2px solid',
-  margin: 15,
-  position: 'relative',
-});
-
-
-export const Event = styled("div", {
-  background: '#5A6650',
-  padding: '10px 3px',
-  color: 'white',
-  fontSize: 18,
-  position: 'absolute',
-  margin: 5,
-  width: 'calc(100% - 10px)',
-  borderRadius: 5,
-  zIndex: 10,
-});
-
-export const FlexBox = styled("div", {
-  display: 'flex',
-  justifyContent: 'space-around',
-  marginTop: 10,
-  alignItems: 'center',
-  
-  'button': {
-    alignItems: 'center',
-    display: 'flex',
-    fontSize: 19,
-    padding: '5px 10px',
-  },
-});

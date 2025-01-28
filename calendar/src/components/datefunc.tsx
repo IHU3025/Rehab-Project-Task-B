@@ -1,10 +1,5 @@
-import React, { useState } from "react";
 
-export const getMonday = () => {
-    const today = new Date();
-    const first = today.getDate() - today.getDay() + 1;
-    return new Date(today.setDate(first));
-  };
+
   
 export const getSunday = () => {
     const today = new Date();

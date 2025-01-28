@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { CalendarEvent } from "./events";
-import styles from './todaystyle';
+import styles from './todayScheduleStyle';
+
+{/* This one styles top event with different background color and display participants, only shows upcoming events*/}
+
 
 interface TodayEventsProps {
   events: CalendarEvent[];
@@ -39,7 +42,6 @@ const TodayEvents: React.FC<TodayEventsProps> = ({ events }) => {
   // Identify the topmost (earliest upcoming) event
   const topEvent = todayEvents.length > 0 ? todayEvents[0] : null;
 
-  // State for weather data
   const [weather, setWeather] = useState<Weather | null>(null);
 
   useEffect(() => {
@@ -84,15 +86,10 @@ const TodayEvents: React.FC<TodayEventsProps> = ({ events }) => {
           return (
             <li
               key={event.index}
-              style={{
-                ...styles.eventItem,
-
-              }}
+              style={styles.eventItem}
             >
               <div
-                style={{
-                  ...styles.bulletPointContainer,
-                }}
+                style={ styles.bulletPointContainer}
               >
                 <div style={{...styles.bulletPoint, ...(isTopEvent && { transform: 'scale(1.8)' })}}
                  className="bullet-point"></div>
@@ -135,17 +132,17 @@ const TodayEvents: React.FC<TodayEventsProps> = ({ events }) => {
                         src={participant.avatar}
                         style={{
                           ...styles.avatar,
-                          left: `${index * 20}px`, // Slight horizontal overlap
-                          zIndex: event.participants.length - index, // Ensure stacking order
+                          left: `${index * 20}px`, 
+                          zIndex: event.participants.length - index, 
                         }}
                       />
                     ))}
-                    {/* Show "+X" if more participants exist */}
+                    {/* Show "+X" if there are more than 4 participants  
                     {event.participants.length > 4 && (
                       <div style={styles.extraParticipants}>
                         +{event.participants.length - 4}
                       </div>
-                    )}
+                    )} */}
                   </div>
 
                   {/* Virtual Meeting Button */}

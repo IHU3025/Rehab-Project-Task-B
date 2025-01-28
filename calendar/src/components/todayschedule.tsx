@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { CalendarEvent } from "./events";
-import styles from './todaystyle';
+import styles from './todayScheduleStyle';
 
-interface TodayEventsProps {
+{/* This is the current component used on the webpage, which shows participants and meeting link within the hover effect and 
+    displays all events happening today regardless of their starting time.
+
+   I'm not sure if the UI design intends for the effect to apply to all events or only the earilest upcoming event. 
+   So I did a different version in TodaySchedule2, which displays participants only for the most recent event 
+   and shows only the upcoming event (starting after the current time).*/}
+
+
+type TodayEventsProps = {
   events: CalendarEvent[];
 }
 
-interface Weather {
+type Weather = {
     temp_max: number;
     temp_min: number;
     temp_icon: string;
@@ -27,19 +35,13 @@ const formatHour = (hour: number) => {
 
 const TodayEvents: React.FC<TodayEventsProps> = ({ events }) => {
   const today = dayjs().startOf('day');
-  const now = dayjs();
 
   // Filter events for today that have a start time greater than or equal to the current time
   const todayEvents = events
     .filter(event => 
-      dayjs(event.start).isSame(today, 'day') && event.startTime >= now.hour() + now.minute() / 60
-    )
-    .sort((a, b) => a.startTime - b.startTime);
+      dayjs(event.start).isSame(today, 'day') //&& event.startTime >= now.hour() + now.minute() / 60
+    ).sort((a, b) => a.startTime - b.startTime);
 
-  // Identify the topmost (earliest upcoming) event
-  const topEvent = todayEvents.length > 0 ? todayEvents[0] : null;
-
-  // State for weather data
   const [weather, setWeather] = useState<Weather | null>(null);
 
   useEffect(() => {
@@ -83,7 +85,6 @@ const TodayEvents: React.FC<TodayEventsProps> = ({ events }) => {
             key={event.index}
             style={styles.eventItem}
             onMouseEnter={(e) => {
-              //e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
               const details = e.currentTarget.querySelector('.event-details') as HTMLElement;
               if (details) {
                 details.style.maxHeight = '100px';
@@ -103,7 +104,7 @@ const TodayEvents: React.FC<TodayEventsProps> = ({ events }) => {
                 h4.style.fontSize = '15px';
               }
               
-              // Add participants and meeting button dynamically
+              // add participants and meeting button within onMouseEnter
               const participantsRow = document.createElement('div');
               participantsRow.className = 'participants-row';
               participantsRow.style.display = 'flex';
@@ -111,7 +112,7 @@ const TodayEvents: React.FC<TodayEventsProps> = ({ events }) => {
               participantsRow.style.alignItems = 'center';
               participantsRow.style.marginTop = '10px';
 
-              // Add participant avatars
+              // add participant avatars
               const avatarStack = document.createElement('div');
               avatarStack.className = 'avatar-stack';
               avatarStack.style.display = 'flex';
@@ -125,6 +126,7 @@ const TodayEvents: React.FC<TodayEventsProps> = ({ events }) => {
                 avatar.style.borderRadius = '50%';
                 avatar.style.position = 'absolute';
                 avatar.style.left = `${index * 20}px`;
+                avatar.style.border = "2px solid white";
                 avatar.style.zIndex = (event.participants.length - index).toString();
                 avatarStack.appendChild(avatar);
               });
