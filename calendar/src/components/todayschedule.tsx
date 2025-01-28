@@ -156,10 +156,10 @@ const TodayEvents: React.FC<TodayEventsProps> = ({ events }) => {
               if (details) {
                 details.style.maxHeight = '20px';
                 details.style.backgroundColor = 'transparent';
-                details.style.padding = '5px';
+                details.style.padding = '0px';
                 details.style.display = 'flex';
                 details.style.flexDirection= 'column';
-                details.style.paddingBottom = '0px';
+                details.style.paddingBottom = '10px';  
 
               }
               const participantsRow = details.querySelector('.participants-row');

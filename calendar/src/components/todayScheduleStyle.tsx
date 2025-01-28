@@ -61,6 +61,8 @@ const styles: { [key: string]: CSSProperties } = {
       transition: 'max-height 0.3s ease, opacity 0.3s ease',
       maxHeight: '20px',
       overflow: 'hidden',
+      //padding: '5px',
+      margin: 0, 
       
     },
     
