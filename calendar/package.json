@@ -2,6 +2,7 @@
   "name": "calendar",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ihu3025.github.io/Rehab-Project-Task-B/",
   "dependencies": {
     "@fontsource/anek-telugu": "^5.1.1",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -20,13 +21,16 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
+    "react-router-dom": "^7.1.3",
     "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -48,8 +52,9 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-private-property-in-object": "^7.25.9",
-    "ajv": "^7.2.4",
-    "typescript": "^5.7.3",
+    "ajv": "^8.17.1",
+    "gh-pages": "^6.3.0",
+    "typescript": "^4.9.5",
     "web-vitals": "^4.2.4"
   }
 }

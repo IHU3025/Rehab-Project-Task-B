@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/rehab-project/static/css/main.0a8d2836.css",
+    "main.js": "/rehab-project/static/js/main.1cff57a6.js",
+    "static/js/488.9fe3862e.chunk.js": "/rehab-project/static/js/488.9fe3862e.chunk.js",
+    "static/media/anek-telugu-telugu-400-normal.woff": "/rehab-project/static/media/anek-telugu-telugu-400-normal.3ae8a92919c751afd5b5.woff",
+    "static/media/anek-telugu-telugu-400-normal.woff2": "/rehab-project/static/media/anek-telugu-telugu-400-normal.64c18f5462cc0979bdd0.woff2",
+    "static/media/anek-telugu-latin-400-normal.woff": "/rehab-project/static/media/anek-telugu-latin-400-normal.6bd4511dc267339d01b6.woff",
+    "static/media/anek-telugu-latin-400-normal.woff2": "/rehab-project/static/media/anek-telugu-latin-400-normal.ad44ccfb0882486146c7.woff2",
+    "static/media/anek-telugu-latin-ext-400-normal.woff": "/rehab-project/static/media/anek-telugu-latin-ext-400-normal.d605b1420bc29d583652.woff",
+    "static/media/anek-telugu-latin-ext-400-normal.woff2": "/rehab-project/static/media/anek-telugu-latin-ext-400-normal.d6cc4ac8c3ee8cc5cb88.woff2",
+    "index.html": "/rehab-project/index.html",
+    "main.0a8d2836.css.map": "/rehab-project/static/css/main.0a8d2836.css.map",
+    "main.1cff57a6.js.map": "/rehab-project/static/js/main.1cff57a6.js.map",
+    "488.9fe3862e.chunk.js.map": "/rehab-project/static/js/488.9fe3862e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0a8d2836.css",
+    "static/js/main.1cff57a6.js"
+  ]
+}
